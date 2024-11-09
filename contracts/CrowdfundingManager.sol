@@ -68,7 +68,7 @@ contract CrowdfundingManager {
             campaign.isOngoing = false;
         }
         campaign.amountRaised += newAmount;
-        usdc.transferFrom(msg.sender, address(this), newAmount);
+        // usdc.transferFrom(msg.sender, address(this), newAmount);
         s_allocatedFunds[msg.sender][campaignId] += newAmount;
 
         emit CampaignFunded(msg.sender, campaignId, amount, campaign.amountRaised);
@@ -95,7 +95,7 @@ contract CrowdfundingManager {
         Campaign storage campaign = s_campaigns[campaignId];
         require(campaign.creator == msg.sender, "no no");
         require(campaign.isOngoing == false, "expired");
-        usdc.transfer(msg.sender, campaign.amountRaised);
+        //usdc.transfer(msg.sender, campaign.amountRaised);
 
         emit CampaignFundsWithdrawed(msg.sender, campaignId);
     } 
@@ -104,7 +104,7 @@ contract CrowdfundingManager {
         Campaign storage campaign = s_campaigns[campaignId];
         require(campaign.creator == msg.sender, "no no");
         require(campaign.isOngoing == false, "expired");
-        usdc.transfer(msg.sender, s_allocatedFunds[msg.sender][campaignId]);
+        //usdc.transfer(msg.sender, s_allocatedFunds[msg.sender][campaignId]);
         delete s_allocatedFunds[msg.sender][campaignId];
     }
 }
