@@ -1,8 +1,12 @@
 import { viem } from "hardhat";
 
 async function main() {
-  const CrowdfundingManager = await viem.deployContract("CrowdfundingManager");
+  const usdcAddress = "0x036CbD53842c5426634e7929541eC2318f3dCF7e";
+  
+  const CrowdfundingManager = await viem.deployContract("CrowdfundingManager", [usdcAddress]);
+  
   console.log("Contract deployed to:", CrowdfundingManager.address);
+  console.log("USDC address used:", usdcAddress);
 }
 
 main()
